@@ -192,6 +192,9 @@ body::before,body::after{display:none!important;content:none!important}
 
 /* Única corrección: eliminar definitivamente los marcos decorativos de la página */
 body::before,body::after,.hero::after,.footer::before,.hero-frame,.invitation-border,.top-cap-left,.top-cap-right,.bottom-cap-left,.bottom-cap-right{display:none!important;content:none!important;border:0!important;outline:none!important;box-shadow:none!important}
+
+/* Evitar el cursor de texto intermitente (caret browsing) en la invitación sin desactivar selección ni botones */
+html,body,body *{caret-color:transparent!important}
 </style></head><body>
 <header class="nav"><a aria-label="Inicio" class="monogram" href="#inicio"><img alt="Monograma A | M" class="logo-mark" src="images/monograma-am-final.png"/></a><nav class="nav-links"><a href="#historia">Nuestra historia</a><a href="#detalles">La celebración</a><a href="#vestimenta">Vestimenta</a><a href="#galeria">Galería</a><a href="#confirmar">Confirmar</a><a href="#regalos">Regalos</a></nav><a class="mobile-menu btn outline" href="#confirmar" style="min-height:38px;padding:10px 13px">Confirmar</a></header>
 <main><section class="hero" id="inicio"><div aria-label="Ángela y Mario sentados juntos" class="hero-image" role="img"></div><div class="hero-content"><div class="eyebrow">Con el corazón lleno de alegría</div><h1>Ángela<span>&amp;</span>Mario</h1><div class="hero-tagline">Nos complace invitarte a celebrar nuestra boda y compartir este nuevo capítulo de nuestras vidas</div><p class="hero-witnesses">Testigos: Gustavo Orlando Giraldo Neyra y Claudia Ximena Chimpecam</p><a class="btn outline" href="#historia">Descubre nuestra historia ↓</a></div></section>
