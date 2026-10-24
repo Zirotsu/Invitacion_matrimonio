@@ -195,6 +195,15 @@ body::before,body::after,.hero::after,.footer::before,.hero-frame,.invitation-bo
 
 /* Evitar el cursor de texto intermitente (caret browsing) en la invitación sin desactivar selección ni botones */
 html,body,body *{caret-color:transparent!important}
+
+/* Reproductor de música: tipografía e iconos blancos, sin ningún fondo */
+.wedding-music-control{position:fixed;right:24px;bottom:24px;z-index:110;display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;background:transparent!important;box-shadow:none!important;color:#fff!important;padding:10px 12px;font:700 12px/1.4 'DM Sans',Arial,sans-serif;letter-spacing:.06em;cursor:pointer;text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 12px rgba(0,0,0,.88);transition:opacity .2s ease,transform .2s ease;-webkit-tap-highlight-color:transparent}
+.wedding-music-control svg{width:24px;height:24px;flex:none;fill:none;stroke:#fff;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 3px rgba(0,0,0,.85))}
+.wedding-music-control:hover{opacity:.84;transform:translateY(-2px)}
+.wedding-music-control:focus-visible{outline:2px solid #fff!important;outline-offset:4px;border-radius:4px}
+.wedding-music-control[aria-pressed="true"] .music-off-icon{display:none}
+.wedding-music-control[aria-pressed="false"] .music-on-icon{display:none}
+@media(max-width:600px){.wedding-music-control{right:15px;bottom:14px;font-size:11px;gap:7px;padding:10px 8px}.wedding-music-control svg{width:21px;height:21px}}
 </style></head><body>
 <header class="nav"><a aria-label="Inicio" class="monogram" href="#inicio"><img alt="Monograma A | M" class="logo-mark" src="images/monograma-am-final.png"/></a><nav class="nav-links"><a href="#historia">Nuestra historia</a><a href="#detalles">La celebración</a><a href="#vestimenta">Vestimenta</a><a href="#galeria">Galería</a><a href="#confirmar">Confirmar</a><a href="#regalos">Regalos</a></nav><a class="mobile-menu btn outline" href="#confirmar" style="min-height:38px;padding:10px 13px">Confirmar</a></header>
 <main><section class="hero" id="inicio"><div aria-label="Ángela y Mario sentados juntos" class="hero-image" role="img"></div><div class="hero-content"><div class="eyebrow">Con el corazón lleno de alegría</div><h1>Ángela<span>&amp;</span>Mario</h1><div class="hero-tagline">Nos complace invitarte a celebrar nuestra boda y compartir este nuevo capítulo de nuestras vidas</div><p class="hero-witnesses">Testigos: Gustavo Orlando Giraldo Neyra y Claudia Ximena Chimpecam</p><a class="btn outline" href="#historia">Descubre nuestra historia ↓</a></div></section>
@@ -220,4 +229,49 @@ if(CONFIG.whatsapp && /^\d{10,15}$/.test(CONFIG.whatsapp)){const el=$('#whatsapp
 const box=$('#lightbox'),pic=$('#lightbox-img');let previous=null;document.querySelectorAll('[data-src]').forEach(el=>el.addEventListener('click',()=>{previous=el;pic.src=el.dataset.src;box.classList.add('open');document.body.classList.add('lock');$('#close').focus()}));function close(){box.classList.remove('open');document.body.classList.remove('lock');pic.removeAttribute('src');previous?.focus()}$('#close').onclick=close;box.addEventListener('click',e=>{if(e.target===box)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&box.classList.contains('open'))close()});if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(e=>observer.observe(e))}else document.querySelectorAll('.reveal').forEach(e=>e.classList.add('visible'));
 
 document.querySelectorAll('.copy-bank').forEach(btn=>btn.addEventListener('click',async()=>{let number=btn.dataset.copy;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(number)}else{const area=document.createElement('textarea');area.value=number;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();const ok=document.execCommand('copy');area.remove();if(!ok)throw Error('No se pudo copiar')}document.getElementById('bank-status').textContent='Número copiado correctamente.';btn.textContent='¡Copiado!';setTimeout(()=>btn.textContent='Copiar',1600)}catch(e){document.getElementById('bank-status').textContent='Selecciona y copia el número manualmente.'}}));
-</script></body></html>
+
+/* Música de fondo, en bucle, con opción de silenciar y desbloqueo por interacción */
+(()=>{
+ const music=document.getElementById('wedding-background-music');
+ const toggle=document.getElementById('wedding-music-toggle');
+ const label=document.getElementById('wedding-music-label');
+ if(!music||!toggle||!label)return;
+ music.volume=0.45;
+ const sync=()=>{
+  const audible=!music.paused&&!music.muted;
+  toggle.setAttribute('aria-pressed',String(audible));
+  label.textContent=audible?'Silenciar música':music.paused?'Activar música':'Activar sonido';
+  toggle.setAttribute('aria-label',label.textContent);
+ };
+ async function start(){
+  music.muted=false;
+  try{await music.play()}catch(e){/* Autoplay con audio bloqueado hasta interacción */} 
+  sync();
+ }
+ toggle.addEventListener('click',async()=>{
+  if(music.paused){await start();return;}
+  music.muted=!music.muted;sync();
+ });
+ function firstGesture(e){
+  if(e.target.closest?.('#wedding-music-toggle'))return;
+  if(music.paused)start();
+  document.removeEventListener('pointerdown',firstGesture,true);
+  document.removeEventListener('keydown',firstGesture,true);
+ }
+ document.addEventListener('pointerdown',firstGesture,true);
+ document.addEventListener('keydown',firstGesture,true);
+ music.addEventListener('play',sync);
+ music.addEventListener('pause',sync);
+ music.addEventListener('volumechange',sync);
+ sync();
+ if(document.readyState==='complete')start();
+ else window.addEventListener('load',start,{once:true});
+})();
+</script>
+<audio id="wedding-background-music" autoplay loop playsinline preload="metadata" src="audio/cama-y-mesa-acustico.mp3"></audio>
+<button id="wedding-music-toggle" class="wedding-music-control" type="button" aria-pressed="false" aria-label="Activar música de fondo">
+<svg class="music-on-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9.2 9.2 0 0 1 0 13"/></svg>
+<svg class="music-off-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m16 9 5 6m0-6-5 6"/></svg>
+<span id="wedding-music-label">Activar música</span>
+</button>
+</body></html>
