@@ -13,7 +13,7 @@
 .protocol-note{max-width:740px;margin:26px auto 0}
 .footer-mark{width:94px;height:94px;margin:0 auto 18px;display:block}.footer-names{font:400 46px 'Great Vibes',cursive;margin-bottom:10px}
 .nav .monogram{display:inline-flex;align-items:center}
-.gift-header .gift-mark{background:none;border:none;padding:0}.gift-header .gift-mark:before{content:'';display:block;width:52px;height:52px;background:url('images/monograma-am-premium.png') center/contain no-repeat}
+.gift-header .gift-mark{background:none;border:none;padding:0}.gift-header .gift-mark:before{content:'';display:block;width:52px;height:52px;background:url('images/monograma-am.png') center/contain no-repeat}
 .gift-header .gift-mark{font-size:0;width:52px;height:52px}
 @media(max-width:860px){.hero-witnesses{font-size:11px;max-width:330px}.logo-mark{width:54px;height:54px}.expectant-grid{grid-template-columns:1fr;gap:32px}.footer-names{font-size:40px}}
 
@@ -21,72 +21,90 @@
 @media(min-width:951px){.program-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
 
-/* Ajuste QA 2026-10-23: cenefa continua, doble línea, esquinas de invitación acrílica */
+/* Marco de invitación inspirado en el acrílico de la referencia */
 body{position:relative;overflow-x:clip}
-.invitation-border{position:absolute;inset:10px;z-index:65;pointer-events:none;
- border:1px solid rgba(221,196,166,.82);
- box-shadow:inset 0 0 0 5px rgba(255,255,255,0),inset 0 0 0 6px rgba(221,196,166,.58)}
-.frame-corner{position:absolute;display:block;width:24px;height:24px;opacity:.86}
-.frame-corner:before,.frame-corner:after{content:'';position:absolute;border:1px solid rgba(246,229,202,.93)}
-.frame-corner:before{width:14px;height:14px;transform:rotate(45deg)}
-.frame-corner:after{width:4px;height:4px;border-radius:50%}
-.frame-corner.top-left{left:0;top:0}.frame-corner.top-right{right:0;top:0}
-.frame-corner.bottom-left{left:0;bottom:0}.frame-corner.bottom-right{right:0;bottom:0}
-.frame-corner.top-left:before{left:7px;top:7px}.frame-corner.top-left:after{left:4px;top:4px}
-.frame-corner.top-right:before{right:7px;top:7px}.frame-corner.top-right:after{right:4px;top:4px}
-.frame-corner.bottom-left:before{left:7px;bottom:7px}.frame-corner.bottom-left:after{left:4px;bottom:4px}
-.frame-corner.bottom-right:before{right:7px;bottom:7px}.frame-corner.bottom-right:after{right:4px;bottom:4px}
-/* Quitar antiguo recuadro SOLO de portada: ya existe borde global */
+.invitation-border{position:fixed;inset:14px;z-index:70;pointer-events:none;filter:drop-shadow(0 0 1px rgba(104,20,45,.18))}
+.invitation-border:before,.invitation-border:after{content:'';position:absolute;inset:0;border:2px solid rgba(255,255,255,.92)}
+.invitation-border:after{inset:9px}
+.frame-corner{position:absolute;width:28px;height:28px;display:block}
+.frame-corner:before,.frame-corner:after{content:'';position:absolute;background:rgba(255,255,255,.95)}
+.frame-corner.top-left{top:0;left:0}.frame-corner.top-right{top:0;right:0}.frame-corner.bottom-left{bottom:0;left:0}.frame-corner.bottom-right{bottom:0;right:0}
+/* horizontal caps */
+.frame-corner.top-left:before,.frame-corner.top-right:before,.frame-corner.bottom-left:before,.frame-corner.bottom-right:before{width:18px;height:2px;top:3px}
+.frame-corner.bottom-left:before,.frame-corner.bottom-right:before{top:auto;bottom:3px}
+.frame-corner.top-left:after,.frame-corner.top-right:after,.frame-corner.bottom-left:after,.frame-corner.bottom-right:after{width:2px;height:18px;left:3px}
+.frame-corner.top-right:after,.frame-corner.bottom-right:after{left:auto;right:3px}
+.frame-corner.top-right:before,.frame-corner.bottom-right:before{left:auto;right:3px}
+.frame-corner.bottom-left:after,.frame-corner.bottom-right:after{top:auto;bottom:3px}
 .hero-frame{display:none!important}
-/* Logo: sin fondo opaco ni relieve, únicamente trazos blancos */
 .logo-mark,.footer-mark{background:transparent!important;filter:none!important;object-fit:contain}
 .nav .monogram{background:transparent!important}
-/* Regalos conserva iconografía decorativa, sin un A/M alternativo */
-.gift-header .gift-mark{font-size:33px!important;color:var(--wine)!important;border:1px solid var(--gold)!important;background:transparent!important;width:62px!important;height:62px!important}
+.gift-header .gift-mark{font-size:0;width:52px;height:52px;border:none!important;background:url('images/monograma-am.png') center/contain no-repeat transparent!important}
 .gift-header .gift-mark:before{content:none!important;display:none!important}
-/* Colores del novio: tachadura BLANCA y más gruesa para contraste */
-#vestimenta .list-row:first-of-type .swatch:after{
- background:#fff!important;height:3px!important;box-shadow:0 1px 2px rgba(0,0,0,.42)!important}
-/* El segundo grupo conserva una línea vino sobre muestras marfil */
+#vestimenta .list-row:first-of-type .swatch:after{background:#fff!important;height:3px!important;box-shadow:0 1px 2px rgba(0,0,0,.42)!important}
 #vestimenta .list-row:nth-of-type(2) .swatch:after{background:#a12544!important}
-/* La galería ampliada se superpone al marco decorativo */
 .lightbox{z-index:120!important}
-/* Botón limpio: ni rayas decorativas ni scroll-cue superpuestos */
 .scrollcue,.scrollcue:after{display:none!important}
-.hero .btn.outline{position:relative;z-index:2;text-decoration:none;white-space:normal;
- box-shadow:none!important;background:rgba(31,8,18,.12)}
+.hero .btn.outline{position:relative;z-index:2;text-decoration:none;white-space:normal;box-shadow:none!important;background:rgba(31,8,18,.12)}
 .hero .btn.outline:before,.hero .btn.outline:after{content:none!important;display:none!important}
+.map-card{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);overflow:hidden;border-radius:18px;box-shadow:0 16px 44px rgba(67,17,32,.08)}
+.map-drawing{min-height:340px;display:block;background:#efe6df;color:var(--wine);padding:0}
+.map-drawing iframe{width:100%;height:100%;min-height:340px;border:0;display:block}
 @media(max-width:700px){
- .invitation-border{inset:7px;box-shadow:inset 0 0 0 4px transparent,inset 0 0 0 5px rgba(221,196,166,.58)}
- .frame-corner{transform:scale(.76)}
+ .invitation-border{inset:8px}
+ .invitation-border:after{inset:6px}
+ .frame-corner{width:20px;height:20px}
+ .frame-corner.top-left:before,.frame-corner.top-right:before,.frame-corner.bottom-left:before,.frame-corner.bottom-right:before{width:13px;height:2px;top:2px}
+ .frame-corner.bottom-left:before,.frame-corner.bottom-right:before{top:auto;bottom:2px}
+ .frame-corner.top-left:after,.frame-corner.top-right:after,.frame-corner.bottom-left:after,.frame-corner.bottom-right:after{height:13px;width:2px;left:2px}
+ .frame-corner.top-right:after,.frame-corner.bottom-right:after{left:auto;right:2px}
+ .frame-corner.top-right:before,.frame-corner.bottom-right:before{left:auto;right:2px}
+ .frame-corner.bottom-left:after,.frame-corner.bottom-right:after{top:auto;bottom:2px}
+ .nav{padding-left:28px;padding-right:28px}
+ .hero-content{padding-left:32px;padding-right:32px}
+ .map-card{grid-template-columns:1fr}
+ .map-drawing iframe{min-height:300px}
+}
+
  .nav{padding-left:28px;padding-right:28px}
  .hero-content{padding-left:32px;padding-right:32px}
 }
 
-/* QA 2026-10-23: monograma diseñado con IA y borde acrílico fiel a referencia */
-.nav .monogram{width:116px!important;height:116px!important;display:flex!important;align-items:center;justify-content:center;flex:none}
-.nav .logo-mark{display:block;width:116px!important;height:116px!important;max-width:100%;object-fit:contain;background:transparent!important;filter:none!important}
+
+/* FINAL QA: mismo monograma creado con IA en todas las pantallas */
+.nav .monogram{width:116px;height:116px;display:flex;align-items:center;justify-content:center;flex:none}
+.nav .logo-mark{display:block;width:116px!important;height:116px!important;max-width:100%;object-fit:contain;background:none!important;filter:none!important}
 .intro-monogram{display:block;width:168px!important;height:168px!important;object-fit:contain;margin:0 auto 10px;filter:none!important;background:transparent!important}
 .footer .footer-mark{width:158px!important;height:158px!important;object-fit:contain;margin:0 auto 15px;background:transparent!important;filter:none!important}
+/* El encabezado de regalos usa otro adorno, no un sello ilegible sobre blanco */
 .gift-header .gift-mark{width:62px!important;height:62px!important;border:1px solid var(--gold)!important;border-radius:50%;background:none!important;color:var(--wine)!important;font-size:36px!important;display:grid!important;place-items:center}
 .gift-header .gift-mark:before{display:none!important;content:none!important}
+/* Marco de doble filete blanco de la invitación, con pequeños remates cuadrados */
 .invitation-border{inset:16px!important;z-index:70;position:fixed;pointer-events:none;filter:none!important}
 .invitation-border:before,.invitation-border:after{content:"";position:absolute;border:1.5px solid #fff!important;border-radius:0!important;box-shadow:0 0 1px rgba(64,21,30,.6)!important}
-.invitation-border:before{inset:0!important}.invitation-border:after{inset:7px!important}
+.invitation-border:before{inset:0!important}
+.invitation-border:after{inset:7px!important}
 .invitation-border .frame-corner{width:12px;height:12px;display:block;position:absolute;z-index:2;opacity:1}
 .invitation-border .frame-corner:before{content:"";position:absolute;inset:2px;width:6px;height:6px;display:block;background:#fff!important;border:1px solid rgba(90,15,35,.15)!important}
 .invitation-border .frame-corner:after{content:none!important;display:none!important}
-.invitation-border .top-left{top:-2px;left:-2px}.invitation-border .top-right{top:-2px;right:-2px}
-.invitation-border .bottom-left{bottom:-2px;left:-2px}.invitation-border .bottom-right{bottom:-2px;right:-2px}
-.hero-frame{display:none!important}.scrollcue,.scrollcue:after{display:none!important}
+.invitation-border .top-left{top:-2px;left:-2px}
+.invitation-border .top-right{top:-2px;right:-2px}
+.invitation-border .bottom-left{bottom:-2px;left:-2px}
+.invitation-border .bottom-right{bottom:-2px;right:-2px}
+.hero-frame{display:none!important}
+/* No líneas decorativas atravesando botones */
+.scrollcue,.scrollcue:after{display:none!important}
 .hero .btn.outline:before,.hero .btn.outline:after{display:none!important;content:none!important}
+/* Tachas blancas para prendas vino, contrastadas */
 #vestimenta .list-row:first-of-type .swatch:after{background:#fff!important;height:3px!important;box-shadow:0 1px 2px rgba(0,0,0,.6)!important}
 #vestimenta .list-row:nth-of-type(2) .swatch:after{background:#8b1e40!important}
+/* Mapa realmente embebido, CTA en columna contigua */
 .map-card{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);overflow:hidden;align-items:stretch;border-radius:16px}
 .map-drawing{min-height:380px;display:block;padding:0;background:#eee3dd}
 .map-drawing iframe{width:100%;height:100%;min-height:380px;display:block;border:0}
 .map-text{padding:40px 38px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:5px}
 .map-text .btn{margin-top:20px;max-width:100%;text-align:center}
+/* Evitar bordes decorativos delante de ventanas emergentes */
 .lightbox{z-index:130!important}
 @media(max-width:940px){
  .nav .monogram,.nav .logo-mark{width:98px!important;height:98px!important}
@@ -105,21 +123,87 @@ body{position:relative;overflow-x:clip}
  .map-text{padding:28px 24px 34px}
  .map-text .btn{width:100%}
 }
-</style></head><body><div aria-hidden="true" class="invitation-border"><span class="frame-corner top-left"></span><span class="frame-corner top-right"></span><span class="frame-corner bottom-left"></span><span class="frame-corner bottom-right"></span></div>
-<header class="nav"><a aria-label="Inicio" class="monogram" href="#inicio"><img alt="Monograma A | M" class="logo-mark" src="images/monograma-am-premium.png"/></a><nav class="nav-links"><a href="#historia">Nuestra historia</a><a href="#detalles">La celebración</a><a href="#vestimenta">Vestimenta</a><a href="#galeria">Galería</a><a href="#confirmar">Confirmar</a><a href="#regalos">Regalos</a></nav><a class="mobile-menu btn outline" href="#confirmar" style="min-height:38px;padding:10px 13px">Confirmar</a></header>
-<main><section class="hero" id="inicio"><div aria-label="Ángela y Mario sentados juntos" class="hero-image" role="img"></div><div class="hero-frame"></div><div class="hero-content"><div class="eyebrow">Con el corazón lleno de alegría</div><h1>Ángela<span>&amp;</span>Mario</h1><div class="hero-tagline">Nos complace invitarte a celebrar nuestra boda y compartir este nuevo capítulo de nuestras vidas</div><p class="hero-witnesses">Testigos: Gustavo Orlando Giraldo Neyra y Claudia Ximena Chimpecam</p><a class="btn outline" href="#historia">Descubre nuestra historia ↓</a></div></section>
-<section class="intro"><div class="wrap reveal"><img class="intro-monogram" src="images/monograma-am-premium.png" alt="Sello de Ángela y Mario"/><span class="eyebrow">Un momento para siempre</span><p>«Hay historias que no se escriben con palabras, sino con cada instante compartido.»</p><small>Ángela &amp; Mario</small></div></section>
+
+
+/* CORRECCIÓN FINAL: quitar borde fijo y dejar ornamentos solo arriba y abajo */
+.invitation-border{display:none!important}
+body{position:relative;overflow-x:hidden}
+body::before, body::after{content:"";position:absolute;left:16px;right:16px;height:22px;pointer-events:none;z-index:4}
+body::before{top:16px;border-top:2px solid rgba(255,255,255,.95)}
+body::after{bottom:16px;border-bottom:2px solid rgba(255,255,255,.95)}
+.hero{position:relative}
+.hero::after{content:"";position:absolute;top:24px;left:16px;right:16px;height:18px;border-top:2px solid rgba(255,255,255,.95);border-bottom:2px solid rgba(255,255,255,.95);z-index:2;pointer-events:none}
+.hero .header-corners{display:none}
+.footer{position:relative}
+.footer::before{content:"";position:absolute;left:16px;right:16px;bottom:24px;height:18px;border-top:2px solid rgba(255,255,255,.92);border-bottom:2px solid rgba(255,255,255,.92);pointer-events:none}
+/* remates cuadrados discretos como la invitación */
+.hero .top-cap-left,.hero .top-cap-right,.footer .bottom-cap-left,.footer .bottom-cap-right{position:absolute;width:10px;height:10px;border:2px solid rgba(255,255,255,.95);transform:rotate(45deg);background:transparent;z-index:3;pointer-events:none}
+.hero .top-cap-left{top:18px;left:20px}.hero .top-cap-right{top:18px;right:20px}
+.footer .bottom-cap-left{bottom:18px;left:20px}.footer .bottom-cap-right{bottom:18px;right:20px}
+/* A|M exacto generado, más grande y consistente */
+.nav .monogram{width:132px!important;height:132px!important;display:flex!important;align-items:center;justify-content:center;flex:none}
+.nav .logo-mark{width:132px!important;height:132px!important;object-fit:contain;background:transparent!important;filter:none!important;display:block}
+.intro-monogram{display:block!important;width:210px!important;height:210px!important;object-fit:contain;margin:0 auto 16px;background:transparent!important;filter:none!important}
+.footer .footer-mark{width:180px!important;height:180px!important;object-fit:contain;margin:0 auto 16px;background:transparent!important;filter:none!important}
+/* si el navegador no encuentra una imagen, no mostrar texto feo */
+img{font-size:0}
+/* Mapa real embebido */
+.map-card{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);overflow:hidden;align-items:stretch;border-radius:18px}
+.map-drawing{min-height:360px;display:block;background:#efe7e1;padding:0}
+.map-drawing iframe{width:100%;height:100%;min-height:360px;border:0;display:block}
+.map-text{padding:40px 36px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.map-text .btn{margin-top:18px}
+/* mantiene limpio el botón de historia */
+.scrollcue,.scrollcue:after,.hero .btn.outline:before,.hero .btn.outline:after{display:none!important;content:none!important}
+/* líneas blancas de contraste */
+#vestimenta .list-row:first-of-type .swatch:after{background:#fff!important;height:3px!important;box-shadow:0 1px 2px rgba(0,0,0,.55)!important}
+@media(max-width:900px){
+ .nav .monogram,.nav .logo-mark{width:110px!important;height:110px!important}
+ .intro-monogram{width:172px!important;height:172px!important}
+ .footer .footer-mark{width:148px!important;height:148px!important}
+}
+@media(max-width:700px){
+ body::before,body::after{left:8px;right:8px;height:14px}
+ body::before{top:8px} body::after{bottom:8px}
+ .hero::after{left:8px;right:8px;top:12px;height:14px}
+ .footer::before{left:8px;right:8px;bottom:12px;height:14px}
+ .hero .top-cap-left,.hero .top-cap-right,.footer .bottom-cap-left,.footer .bottom-cap-right{width:7px;height:7px;border-width:1.5px}
+ .hero .top-cap-left{top:9px;left:10px}.hero .top-cap-right{top:9px;right:10px}
+ .footer .bottom-cap-left{bottom:10px;left:10px}.footer .bottom-cap-right{bottom:10px;right:10px}
+ .nav .monogram,.nav .logo-mark{width:102px!important;height:102px!important}
+ .intro-monogram{width:148px!important;height:148px!important}
+ .footer .footer-mark{width:126px!important;height:126px!important}
+ .map-card{grid-template-columns:1fr}
+ .map-drawing iframe,.map-drawing{min-height:290px}
+ .map-text{padding:28px 22px 36px}
+}
+
+/* QA final: cenefas únicamente en portada y pie, no persiguen el scroll */
+body::before,body::after{display:none!important;content:none!important}
+.invitation-border{display:none!important}
+.hero:after{position:absolute!important;top:18px!important;bottom:auto!important;left:17px!important;right:17px!important;height:14px!important;
+  border-top:2px solid #fff!important;border-bottom:2px solid #fff!important;pointer-events:none!important;z-index:3!important}
+.footer:before{position:absolute!important;top:auto!important;bottom:18px!important;left:17px!important;right:17px!important;height:14px!important;
+  border-top:2px solid #fff!important;border-bottom:2px solid #fff!important;pointer-events:none!important}
+@media(max-width:700px){
+ .hero:after{top:9px!important;left:9px!important;right:9px!important;height:10px!important}
+ .footer:before{bottom:9px!important;left:9px!important;right:9px!important;height:10px!important}
+}
+</style></head><body>
+<header class="nav"><a aria-label="Inicio" class="monogram" href="#inicio"><img alt="Monograma A | M" class="logo-mark" src="images/monograma-am-final.png"/></a><nav class="nav-links"><a href="#historia">Nuestra historia</a><a href="#detalles">La celebración</a><a href="#vestimenta">Vestimenta</a><a href="#galeria">Galería</a><a href="#confirmar">Confirmar</a><a href="#regalos">Regalos</a></nav><a class="mobile-menu btn outline" href="#confirmar" style="min-height:38px;padding:10px 13px">Confirmar</a></header>
+<main><section class="hero" id="inicio"><div aria-label="Ángela y Mario sentados juntos" class="hero-image" role="img"></div><div class="hero-frame"></div><div class="hero-content"><div class="eyebrow">Con el corazón lleno de alegría</div><h1>Ángela<span>&amp;</span>Mario</h1><div class="hero-tagline">Nos complace invitarte a celebrar nuestra boda y compartir este nuevo capítulo de nuestras vidas</div><p class="hero-witnesses">Testigos: Gustavo Orlando Giraldo Neyra y Claudia Ximena Chimpecam</p><a class="btn outline" href="#historia">Descubre nuestra historia ↓</a></div><span class="top-cap-left"></span><span class="top-cap-right"></span></section>
+<section class="intro"><div class="wrap reveal"><img alt="Monograma A | M" class="intro-monogram" src="images/monograma-am-final.png"/><span class="eyebrow">Un momento para siempre</span><p>«Hay historias que no se escriben con palabras, sino con cada instante compartido.»</p><small>Ángela &amp; Mario</small></div></section>
 <section class="section" id="historia"><div class="wrap story-grid"><div class="story-photos reveal"><img alt="Ángela y Mario sonriendo juntos" class="main" loading="lazy" src="images/juntos.jpg"/><img alt="Anillo de compromiso y rosas rojas" class="detail" loading="lazy" src="images/anillo.jpg"/></div><div class="story-text reveal"><span class="eyebrow">Capítulo favorito</span><h2 class="title">Nuestra historia de amor</h2><div class="ornament" style="text-align:left">❧</div><p class="copy">Durante años, sus caminos se cruzaron hasta que nació entre ellos un amor profundo, fortalecido con el tiempo y capaz de superar las dificultades. Hoy, felices por la familia que han construido y agradecidos por cada paso compartido, se preparan para celebrar su unión y prometerse amor para toda la vida.</p><div class="signature">Con amor, Ángela &amp; Mario</div></div></div></section>
 <section class="section tinted" id="detalles"><div class="wrap center"><span class="eyebrow">El día que tanto soñamos</span><h2 class="title">Nuestra celebración</h2><p class="copy">Aquí encontrarás la información principal del evento y los datos de contacto para cualquier consulta.</p><div class="detail-grid"><article class="detail-card reveal"><div class="detail-icon">✧</div><h3>Ceremonia civil</h3><p><strong>Martes 10 de noviembre · 4:00 pm</strong><br/>Ingreso de invitados desde las 3:00 pm</p></article><article class="detail-card reveal"><div class="detail-icon">♡</div><h3>Lugar</h3><p><strong>Chorrillos, Lima</strong><br/>Jr. Los Horticultores S/N Lotiz. Fundo Villa Baja</p></article><article class="detail-card reveal"><div class="detail-icon">✦</div><h3>Contacto</h3><p><strong>+51 929 797 058</strong><br/>Escríbenos por WhatsApp para confirmar o consultar</p></article></div></div></section>
 <section class="count-section"><div class="wrap reveal"><span class="eyebrow">Nuestro gran día</span><h2 class="title">La cuenta regresiva</h2><p class="copy" id="count-message">Contamos los días para vernos el martes 10 de noviembre a las 3:00 pm.</p><div aria-label="Cuenta regresiva" class="counter"><div class="count-cell"><strong id="days">--</strong><span>Días</span></div><div class="count-cell"><strong id="hours">--</strong><span>Horas</span></div><div class="count-cell"><strong id="mins">--</strong><span>Minutos</span></div><div class="count-cell"><strong id="secs">--</strong><span>Segundos</span></div></div></div></section>
 <section class="section" id="vestimenta"><div class="wrap split"><div class="reveal"><span class="eyebrow">Detalles para nuestros invitados</span><h2 class="title">Código de vestimenta</h2><p class="copy">Queremos que disfrutes de nuestra celebración con un estilo elegante. Reservaremos dos colores especiales para los protagonistas del día.</p><div class="list"><div class="list-row"><strong>Para los caballeros</strong><p>El novio vestirá de <b>vino</b>. Por favor, evita el vino, borgoña y tonalidades muy similares.</p><div aria-label="Colores reservados para el novio" class="swatches"><span class="swatch" style="background:#68142d"></span><span class="swatch" style="background:#833046"></span><span class="swatch" style="background:#4e0c25"></span></div></div><div class="list-row"><strong>Para las damas</strong><p><b>Vestimenta formal: vestido largo.</b> Agradecemos evitar vestidos cortos. La novia vestirá de <b>blanco</b>, por lo que te pedimos no usar blanco, marfil, ivory ni tonos muy próximos al blanco.</p><div aria-label="Colores reservados para la novia" class="swatches"><span class="swatch" style="background:#fff"></span><span class="swatch" style="background:#f7f1e7"></span><span class="swatch" style="background:#eee9de"></span></div></div></div><p class="copy">Muchas gracias por ayudarnos a hacer aún más especial nuestro día.</p></div><img alt="Sesión romántica de Ángela y Mario" class="split-photo reveal" loading="lazy" src="images/estudio.jpg"/></div></section>
 <section class="section tinted" id="programa"><div class="wrap center"><span class="eyebrow">Momentos especiales</span><h2 class="title">Nuestro programa</h2><p class="copy">Así se desarrollará nuestra celebración a lo largo de la tarde y la noche.</p><div class="program-grid"><article class="program-item reveal"><div class="num">01</div><h3>Recepción de invitados</h3><p>3:00 pm</p></article><article class="program-item reveal"><div class="num">02</div><h3>Ceremonia civil</h3><p>4:00 pm</p></article><article class="program-item reveal"><div class="num">03</div><h3>Brindis</h3><p>5:40 pm</p></article><article class="program-item reveal"><div class="num">04</div><h3>Entradas</h3><p>6:45 pm</p></article><article class="program-item reveal"><div class="num">05</div><h3>Cena</h3><p>7:30 pm</p></article><article class="program-item reveal"><div class="num">06</div><h3>Música en vivo y baile</h3><p>8:00 pm</p></article></div><p class="protocol-note notice reveal">Durante la celebración también realizaremos el protocolo correspondiente antes del brindis.</p></div></section>
-<section class="section"><div class="wrap"><div class="center"><span class="eyebrow">Encuéntranos</span><h2 class="title">Dónde celebraremos</h2><p class="copy">Nos encontraremos en Jr. Los Horticultores S/N Lotiz. Fundo Villa Baja, distrito de Chorrillos, Lima.</p></div><div class="map-card reveal"><div class="map-drawing"><iframe aria-label="Mapa de Google Maps para la boda en Chorrillos, Lima" title="Mapa de Google Maps para la boda" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=-12.212309837341309,-76.98178100585938&amp;z=17&amp;hl=es&amp;output=embed"></iframe></div><div class="map-text"><span class="eyebrow">El lugar de encuentro</span><h3>Jr. Los Horticultores S/N Lotiz. Fundo Villa Baja</h3><p class="copy">Guarda esta ubicación para llegar con facilidad el día del evento. El enlace te llevará directamente al punto señalado en Google Maps.</p><span class="eyebrow">Haz clic para abrir el mapa</span><a class="btn" href="https://www.google.com/maps?q=-12.212309837341309,-76.98178100585938&amp;z=17&amp;hl=es" rel="noopener" target="_blank">Abrir ubicación en Google Maps</a></div></div></div></section>
+<section class="section"><div class="wrap"><div class="center"><span class="eyebrow">Encuéntranos</span><h2 class="title">Dónde celebraremos</h2><p class="copy">Nos encontraremos en Jr. Los Horticultores S/N Lotiz. Fundo Villa Baja, distrito de Chorrillos, Lima.</p></div><div class="map-card reveal"><div class="map-drawing"><iframe allowfullscreen="" aria-label="Mapa de Google Maps para la boda en Chorrillos, Lima" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=-12.212309837341309,-76.98178100585938&amp;z=17&amp;hl=es&amp;output=embed" title="Mapa de Google Maps para la boda"></iframe></div><div class="map-text"><span class="eyebrow">El lugar de encuentro</span><h3>Jr. Los Horticultores S/N Lotiz. Fundo Villa Baja</h3><p class="copy">Guarda esta ubicación para llegar con facilidad el día del evento. El enlace te llevará directamente al punto señalado en Google Maps.</p><span class="eyebrow">Haz clic para abrir el mapa</span><a class="btn" href="https://www.google.com/maps?q=-12.212309837341309,-76.98178100585938&amp;z=17&amp;hl=es" rel="noopener" target="_blank">Abrir ubicación en Google Maps</a></div></div></div></section>
 <section aria-labelledby="adult-title" class="adult-section section" id="solo-adultos"><div class="wrap"><div class="adult-card reveal"><div aria-hidden="true" class="adult-flourish">✦</div><span class="eyebrow">Un detalle importante</span><h2 class="title" id="adult-title">Una celebración solo para adultos</h2><div aria-hidden="true" class="ornament">♡</div><p>Con mucho cariño, hemos preparado esta ocasión como una <strong>celebración exclusiva para adultos</strong>. Agradecemos de corazón que nos acompañen <strong>sin niños</strong> y que puedan organizarse con anticipación.</p><p>Gracias por su comprensión y por ser parte de este momento tan especial para nosotros.</p></div></div></section>
 <section class="section expectant" id="dulce-espera"><div class="wrap split expectant-grid"><div class="expectant-copy reveal"><span class="eyebrow">Un amor que sigue creciendo</span><h2 class="title">Un pequeño milagro en camino</h2><div class="ornament">♡</div><p class="copy">Junto a esta historia de amor, también celebran una bendición muy especial. Esta nueva etapa simboliza la familia que están construyendo con ilusión, ternura y esperanza.</p><p class="copy">Por eso, esta boda no solo celebra su unión, sino también el hermoso futuro que empieza a florecer para ambos.</p></div><div class="expectant-media reveal"><div class="expectant-card"><img alt="Fotografía enmarcada del ultrasonido" loading="lazy" src="images/ultrasonido.jpg"/></div></div></div></section><section class="section tinted three-photos" id="galeria"><div class="wrap center"><span class="eyebrow">Instantes que hablan por sí solos</span><h2 class="title">Nuestros recuerdos</h2><div class="ornament">❧</div><div class="gallery-grid three-photos"><button aria-label="Ampliar foto de la pareja sentada" class="gallery-img g4 reveal" data-src="images/abrazo.jpg"><img alt="Ángela y Mario sentados abrazados" loading="lazy" src="images/abrazo.jpg"/></button><button aria-label="Ampliar foto de la pareja" class="gallery-img g4 reveal" data-src="images/juntos.jpg"><img alt="Ángela y Mario juntos" loading="lazy" src="images/juntos.jpg"/></button><button aria-label="Ampliar foto de beso" class="gallery-img g4 reveal" data-src="images/beso.jpg"><img alt="Ángela y Mario compartiendo un beso" loading="lazy" src="images/beso.jpg"/></button></div></div></section>
 <section aria-labelledby="regalos-titulo" class="section gift-area" id="regalos"><div class="wrap"><div class="center gift-intro reveal"><span class="eyebrow">Con mucho cariño</span><h2 class="title" id="regalos-titulo">Un detalle de corazón</h2><div aria-hidden="true" class="ornament">✧</div><p class="copy">El regalo más especial será compartir este día contigo. Si deseas acompañarnos también con un presente, hemos preparado estas opciones para hacerlo de forma sencilla. Agradecemos profundamente tu cariño y tus buenos deseos.</p></div><div class="gift-panel reveal"><div class="gift-header"><div aria-hidden="true" class="gift-mark">♡</div><div><h3>Para quienes deseen obsequiarnos</h3><p>Transferencias bancarias · BCP Perú</p></div></div><div class="bank-grid"><article class="bank-card"><small>01 · Moneda nacional</small><h4>Cuenta en soles</h4><div class="bank-line"><span class="bank-label">Número de cuenta BCP</span><div class="bank-value"><code>19393977079039</code><button aria-label="Copiar cuenta BCP soles" class="copy-bank" data-copy="19393977079039" type="button">Copiar</button></div></div><div class="bank-line"><span class="bank-label">Código de cuenta interbancaria (CCI)</span><div class="bank-value"><code>00219319397707903910</code><button aria-label="Copiar CCI soles" class="copy-bank" data-copy="00219319397707903910" type="button">Copiar</button></div></div></article><article class="bank-card"><small>02 · Moneda extranjera</small><h4>Cuenta en dólares</h4><div class="bank-line"><span class="bank-label">Número de cuenta BCP</span><div class="bank-value"><code>19393977322185</code><button aria-label="Copiar cuenta BCP dólares" class="copy-bank" data-copy="19393977322185" type="button">Copiar</button></div></div><div class="bank-line"><span class="bank-label">Código de cuenta interbancaria (CCI)</span><div class="bank-value"><code>00219319397732218516</code><button aria-label="Copiar CCI dólares" class="copy-bank" data-copy="00219319397732218516" type="button">Copiar</button></div></div></article></div><p aria-live="polite" class="bank-status" id="bank-status" role="status"></p></div></div></section>
 <section class="rsvp" id="confirmar"><div class="wrap reveal"><span class="eyebrow">Nos haría muy felices contar contigo</span><h2 class="title">Confirma tu asistencia</h2><div class="ornament">♡</div><p class="copy">Tu presencia hará este día todavía más especial. Puedes escribirnos directamente por WhatsApp para confirmar tu asistencia o realizar cualquier consulta.</p><a class="btn" href="https://wa.me/51929797058?text=Hola%2C%20quisiera%20confirmar%20mi%20asistencia%20a%20la%20boda%20de%20%C3%81ngela%20y%20Mario." id="whatsapp" rel="noopener noreferrer" target="_blank">Confirmar por WhatsApp</a></div></section></main>
-<footer class="footer"><img alt="Monograma A | M" class="footer-mark" src="images/monograma-am-premium.png"/><div class="footer-names">Ángela &amp; Mario</div><p>Una historia para toda la vida · Hecho con amor</p></footer>
+<footer class="footer"><img alt="Monograma A | M" class="footer-mark" src="images/monograma-am-final.png"/><div class="footer-names">Ángela &amp; Mario</div><p>Una historia para toda la vida · Hecho con amor</p><span class="bottom-cap-left"></span><span class="bottom-cap-right"></span></footer>
 <div aria-label="Fotografía ampliada" aria-modal="true" class="lightbox" id="lightbox" role="dialog"><button aria-label="Cerrar imagen" id="close" type="button">×</button><img alt="Fotografía ampliada" id="lightbox-img"/></div>
 <script>
 // CONFIGURACIÓN: ingresar únicamente datos confirmados.
