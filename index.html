@@ -230,8 +230,8 @@ const box=$('#lightbox'),pic=$('#lightbox-img');let previous=null;document.query
 
 document.querySelectorAll('.copy-bank').forEach(btn=>btn.addEventListener('click',async()=>{let number=btn.dataset.copy;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(number)}else{const area=document.createElement('textarea');area.value=number;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();const ok=document.execCommand('copy');area.remove();if(!ok)throw Error('No se pudo copiar')}document.getElementById('bank-status').textContent='Número copiado correctamente.';btn.textContent='¡Copiado!';setTimeout(()=>btn.textContent='Copiar',1600)}catch(e){document.getElementById('bank-status').textContent='Selecciona y copia el número manualmente.'}}));
 
-/* Música de fondo, en bucle, con opción de silenciar y desbloqueo por interacción */
-(()=>{
+/* Música: esperar a que el DOM contenga los controles */
+document.addEventListener('DOMContentLoaded',()=>{
  const music=document.getElementById('wedding-background-music');
  const toggle=document.getElementById('wedding-music-toggle');
  const label=document.getElementById('wedding-music-label');
@@ -255,18 +255,22 @@ document.querySelectorAll('.copy-bank').forEach(btn=>btn.addEventListener('click
  function firstGesture(e){
   if(e.target.closest?.('#wedding-music-toggle'))return;
   if(music.paused)start();
-  document.removeEventListener('pointerdown',firstGesture,true);
-  document.removeEventListener('keydown',firstGesture,true);
  }
  document.addEventListener('pointerdown',firstGesture,true);
+ document.addEventListener('click',firstGesture,true);
  document.addEventListener('keydown',firstGesture,true);
- music.addEventListener('play',sync);
+ music.addEventListener('play',()=>{
+  document.removeEventListener('pointerdown',firstGesture,true);
+  document.removeEventListener('click',firstGesture,true);
+  document.removeEventListener('keydown',firstGesture,true);
+  sync();
+ });
  music.addEventListener('pause',sync);
  music.addEventListener('volumechange',sync);
  sync();
  if(document.readyState==='complete')start();
  else window.addEventListener('load',start,{once:true});
-})();
+});
 </script>
 <audio id="wedding-background-music" autoplay loop playsinline preload="metadata" src="audio/cama-y-mesa-acustico.mp3"></audio>
 <button id="wedding-music-toggle" class="wedding-music-control" type="button" aria-pressed="false" aria-label="Activar música de fondo">
